@@ -1,7 +1,10 @@
 {% extends layout('default') %}
 
 {% block before_container %}
-    {% include "theme::partials/page-main-title" with {page_title: block('page_title'), show_breadcrumbs: 1 } %}
+    {% include "theme::partials/page-main-title" with {
+        page_title: block('page_title'),
+        show_breadcrumbs: 1
+    } %}
 {% endblock %}
 
 {% block container %}

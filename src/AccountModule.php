@@ -10,7 +10,7 @@ class AccountModule extends Module
      *
      * @var string
      */
-    protected $icon = 'fa fa-puzzle-piece';
+    protected $icon = 'fa fa-user';
 
     /**
      * The module sections.
@@ -18,6 +18,13 @@ class AccountModule extends Module
      * @var array
      */
     protected $sections = [
-        'profile'
+        'profile',
     ];
+
+    /**
+     * Module navigation
+     *
+     * @var boolean
+     */
+    protected $navigation = false;
 }

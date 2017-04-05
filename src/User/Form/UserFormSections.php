@@ -17,12 +17,12 @@ class UserFormSections
             'last_name',
             'display_name',
             'username',
-            'email'
+            'email',
         ];
 
         $password_field = [
-	        'password',
-	        'confirm_password'
+            'password',
+            'confirm_password',
         ];
 
         $assignments = $users->getAssignments();
@@ -31,13 +31,13 @@ class UserFormSections
 
         $builder->setSections(
             [
-                'general' => [
+                'general'  => [
                     'fields' => $fields,
                 ],
                 'password' => [
-	                'fields' => $password_field,
+                    'fields' => $password_field,
                 ],
-                'profile' => [
+                'profile'  => [
                     'fields' => $profileFields,
                 ],
             ]

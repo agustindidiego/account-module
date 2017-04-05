@@ -1,35 +1,18 @@
 <?php namespace Rage\AccountModule\Ui\ControlPanel\Component\Section;
 
-use Anomaly\Streams\Platform\Addon\Module\ModuleCollection;
 use Rage\AccountModule\Ui\ControlPanel\ControlPanelBuilder;
 
 /**
  * Class SectionNormalizer
  *
- * @link   http://pyrocms.com/
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  * @author Agustin Didiego
+ *
+ * @link   http://pyrocms.com/
  */
-class SectionNormalizer
+class SectionNormalizer extends \Anomaly\Streams\Platform\Ui\ControlPanel\Component\Section\SectionNormalizer
 {
-
-    /**
-     * The module collection.
-     *
-     * @var ModuleCollection
-     */
-    protected $modules;
-
-    /**
-     * Create a new SectionNormalizer instance.
-     *
-     * @param ModuleCollection $modules
-     */
-    public function __construct(ModuleCollection $modules)
-    {
-        $this->modules = $modules;
-    }
 
     /**
      * Normalize the section input.
@@ -43,9 +26,12 @@ class SectionNormalizer
         /*
          * Move child sections into main array.
          */
-        foreach ($sections as $slug => &$section) {
-            if (isset($section['sections'])) {
-                foreach ($section['sections'] as $key => &$child) {
+        foreach ($sections as $slug => &$section)
+        {
+            if (isset($section['sections']))
+            {
+                foreach ($section['sections'] as $key => &$child)
+                {
                     $child['parent'] = array_get($section, 'slug', $slug);
                     $child['slug']   = array_get($child, 'slug', $key);
 
@@ -58,13 +44,15 @@ class SectionNormalizer
          * Loop over each section and make sense of the input
          * provided for the given module.
          */
-        foreach ($sections as $slug => &$section) {
+        foreach ($sections as $slug => &$section)
+        {
 
             /*
              * If the slug is not valid and the section
              * is a string then use the section as the slug.
              */
-            if (is_numeric($slug) && is_string($section)) {
+            if (is_numeric($slug) && is_string($section))
+            {
                 $section = [
                     'slug' => $section,
                 ];
@@ -74,7 +62,8 @@ class SectionNormalizer
              * If the slug is a string and the title is not
              * set then use the slug as the slug.
              */
-            if (is_string($slug) && !isset($section['slug'])) {
+            if (is_string($slug) && !isset($section['slug']))
+            {
                 $section['slug'] = $slug;
             }
 
@@ -86,7 +75,8 @@ class SectionNormalizer
             /*
              * Move the HREF into attributes.
              */
-            if (isset($section['href'])) {
+            if (isset($section['href']))
+            {
                 $section['attributes']['href'] = array_pull($section, 'href');
             }
 
@@ -94,9 +84,11 @@ class SectionNormalizer
              * Move all data-* keys
              * to attributes.
              */
-            foreach ($section as $attribute => $value) {
-                if (str_is('data-*', $attribute)) {
-                    array_set($section, 'attributes.' . $attribute, array_pull($section, $attribute));
+            foreach ($section as $attribute => $value)
+            {
+                if (str_is('data-*', $attribute))
+                {
+                    array_set($section, 'attributes.'.$attribute, array_pull($section, $attribute));
                 }
             }
 
@@ -105,7 +97,8 @@ class SectionNormalizer
              *
              * @deprecated as of v3.2
              */
-            if (!isset($section['permalink']) && isset($section['attributes']['data-href'])) {
+            if (!isset($section['permalink']) && isset($section['attributes']['data-href']))
+            {
                 $section['permalink'] = array_pull($section, 'attributes.data-href');
             }
 
@@ -116,13 +109,16 @@ class SectionNormalizer
                 isset($section['attributes']['href']) &&
                 is_string($section['attributes']['href']) &&
                 !starts_with($section['attributes']['href'], 'http')
-            ) {
-            	if(str_is('*::*', $section['attributes']['href']))
-	            {
-		            $section['attributes']['href'] = route($section['attributes']['href']);
-	            } else {
-		            $section['attributes']['href'] = url($section['attributes']['href']);
-	            }
+            )
+            {
+                if (str_is('*::*', $section['attributes']['href']))
+                {
+                    $section['attributes']['href'] = route($section['attributes']['href']);
+                }
+                else
+                {
+                    $section['attributes']['href'] = url($section['attributes']['href']);
+                }
 
             }
 
@@ -130,7 +126,8 @@ class SectionNormalizer
                 isset($section['permalink']) &&
                 is_string($section['permalink']) &&
                 !starts_with($section['permalink'], 'http')
-            ) {
+            )
+            {
                 $section['permalink'] = url($section['permalink']);
             }
         }
