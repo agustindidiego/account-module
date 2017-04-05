@@ -1,0 +1,35 @@
+{% extends layout('default') %}
+
+{% block before_container %}
+    {% include "theme::partials/page-main-title" with {page_title: block('page_title'), show_breadcrumbs: 1 } %}
+{% endblock %}
+
+{% block container %}
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    {% block sidebar %}
+                        {% include "rage.module.account::partials/sidebar" %}
+                    {% endblock %}
+                </div>
+                <div class="col-md-9">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                {% block menu %}
+                                    {% include "rage.module.account::partials/menu" %}
+                                {% endblock %}
+                            </div>
+                            <div class="col-12">
+                                {% include "theme::partials/messages" %}
+
+                                {% block content %}{% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends layout('account') %}
+
+{% block content %}
+
+    {{ form('user_profile').entry(user().id)|raw }}
+
+{% endblock %}

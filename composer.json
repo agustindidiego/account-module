@@ -1,0 +1,26 @@
+{
+    "name": "rage/account-module",
+    "type": "streams-addon",
+    "description": "",
+    "keywords": [
+        "account module",
+        "user account",
+        "user"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rage Ideas",
+            "email": "agustindidiego@gmail.com",
+            "role": "Owner"
+        }
+    ],
+    "support": {
+        "email": "agustindidiego@gmail.com"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rage\\AccountModule\\": "src/"
+        }
+    }
+}

@@ -1,0 +1,9 @@
+{% extends layout('rage.module.account::layouts/account') %}
+
+{% block content %}
+
+    {{ user().email }}
+
+    <a href="{{ url_route('rage.module.account::profile.edit') }}">{{ trans('Edit') }}</a>
+
+{% endblock %}

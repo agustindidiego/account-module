@@ -1,0 +1,11 @@
+{% import "rage.module.account::macros/menu.twig" as menu %}
+
+<aside id="menu" class="scrollbar">
+
+    <ul>
+        {% for section in template.accountcp.sections.root().visible() %}
+            {{ menu.section(template.accountcp.sections, section) }}
+        {% endfor %}
+    </ul>
+
+</aside>
