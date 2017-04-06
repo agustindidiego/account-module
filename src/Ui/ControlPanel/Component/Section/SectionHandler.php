@@ -53,25 +53,28 @@ class SectionHandler
          * We have to have a module for
          * the default functionality.
          */
-        if (!$module = $this->modules->active()) {
+        if (!$module = $this->modules->active())
+        {
             return;
         }
 
         /*
          * Default to the module's sections.
          */
-        $sections = [];
-	    $_accountConfig = config($module->getNamespace('user-account'));
-	    if (isset($_accountConfig['sections'])) {
-		    $sections = $_accountConfig['sections'];
-	    }
+        $sections       = [];
+        $_accountConfig = config($module->getNamespace('user-account'));
+        if (isset($_accountConfig['sections']))
+        {
+            $sections = $_accountConfig['sections'];
+        }
         $builder->setSections($sections);
 
         /*
          * If the module has a sections handler
          * let that HANDLE the sections.
          */
-        if (!$sections && class_exists($sections = get_class($module) . 'Sections')) {
+        if (!$sections && class_exists($sections = get_class($module) . 'Sections'))
+        {
             $this->resolver->resolve($sections . '@handle', compact('builder'));
         }
     }

@@ -50,10 +50,12 @@ class HrefGuesser
     {
         $sections = $builder->getSections();
 
-        foreach ($sections as $index => &$section) {
+        foreach ($sections as $index => &$section)
+        {
 
             // If HREF is set then skip it.
-            if (isset($section['attributes']['href'])) {
+            if (isset($section['attributes']['href']))
+            {
                 continue;
             }
 
@@ -61,7 +63,8 @@ class HrefGuesser
 
             $href = $this->url->to($module->getSlug());
 
-            if ($index !== 0 && $module->getSlug() !== $section['slug']) {
+            if ($index !== 0 && $module->getSlug() !== $section['slug'])
+            {
                 $href .= '/' . $section['slug'];
             }
 

@@ -48,12 +48,14 @@ class SetActiveNavigationLink
          * If we already have an active link
          * then we don't need to do this.
          */
-        if ($active = $links->active()) {
+        if ($active = $links->active())
+        {
             return;
         }
 
         /* @var NavigationLinkInterface $link */
-        foreach ($links as $link) {
+        foreach ($links as $link)
+        {
 
             /*
              * Get the HREF for both the active
@@ -62,7 +64,8 @@ class SetActiveNavigationLink
             $href       = array_get($link->getAttributes(), 'href');
             $activeHref = '';
 
-            if ($active && $active instanceof NavigationLinkInterface) {
+            if ($active && $active instanceof NavigationLinkInterface)
+            {
                 $activeHref = array_get($active->getAttributes(), 'href');
             }
 
@@ -70,7 +73,8 @@ class SetActiveNavigationLink
              * If the request URL does not even
              * contain the HREF then skip it.
              */
-            if (!str_contains($request->url(), $href)) {
+            if (!str_contains($request->url(), $href))
+            {
                 continue;
             }
 
@@ -84,30 +88,34 @@ class SetActiveNavigationLink
             $hrefLength       = strlen($href);
             $activeHrefLength = strlen($activeHref);
 
-            if ($hrefLength > $activeHrefLength) {
+            if ($hrefLength > $activeHrefLength)
+            {
                 $active = $link;
             }
         }
 
         // No active link!
-        if (!$active) {
+        if (!$active)
+        {
             return;
         }
-        
+
         // Active navigation link!
         $active->setActive(true);
 
         // Authorize the active link.
-        if (!$authorizer->authorize($active->getPermission())) {
+        if (!$authorizer->authorize($active->getPermission()))
+        {
             abort(403);
         }
 
         // Add the bread crumb.
-        if (($breadcrumb = $active->getBreadcrumb()) !== false) {
-        	if($active->getSlug() != 'rage.module.account' && ($accountLink = $links->get('rage.module.account')))
-	        {
-	        	$breadcrumbs->put($accountLink->getBreadcrumb() ?: $accountLink->getTitle(), $accountLink->getHref());
-	        }
+        if (($breadcrumb = $active->getBreadcrumb()) !== false)
+        {
+            if ($active->getSlug() != 'rage.module.account' && ($accountLink = $links->get('rage.module.account')))
+            {
+                $breadcrumbs->put($accountLink->getBreadcrumb() ?: $accountLink->getTitle(), $accountLink->getHref());
+            }
             $breadcrumbs->put($breadcrumb ?: $active->getTitle(), $active->getHref());
         }
     }

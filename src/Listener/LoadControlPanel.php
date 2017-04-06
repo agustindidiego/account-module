@@ -71,15 +71,18 @@ class LoadControlPanel
      */
     public function handle()
     {
-        if (in_array($this->request->path(), ['logout'])) {
+        if (in_array($this->request->path(), ['logout']))
+        {
             return;
         }
 
-        if ($this->request->segment(1) == 'admin') {
+        if ($this->request->segment(1) == 'admin')
+        {
             return;
         }
 
-        if (!$this->modules->active()) {
+        if (!$this->modules->active())
+        {
             return;
         }
 

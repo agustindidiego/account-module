@@ -51,15 +51,15 @@ class ControlPanelBuilder extends \Anomaly\Streams\Platform\Ui\ControlPanel\Cont
      */
     protected $controlPanel;
 
-//    /**
-//     * Create a new ControlPanelBuilder instance.
-//     *
-//     * @param ControlPanel $controlPanel
-//     */
-//    public function __construct(ControlPanel $controlPanel)
-//    {
-//        $this->controlPanel = $controlPanel;
-//    }
+    //    /**
+    //     * Create a new ControlPanelBuilder instance.
+    //     *
+    //     * @param ControlPanel $controlPanel
+    //     */
+    //    public function __construct(ControlPanel $controlPanel)
+    //    {
+    //        $this->controlPanel = $controlPanel;
+    //    }
 
     /**
      * Build the control_panel.
@@ -115,6 +115,7 @@ class ControlPanelBuilder extends \Anomaly\Streams\Platform\Ui\ControlPanel\Cont
      * Set the sections.
      *
      * @param array $sections
+     *
      * @return $this
      */
     public function setSections($sections)
@@ -130,11 +131,13 @@ class ControlPanelBuilder extends \Anomaly\Streams\Platform\Ui\ControlPanel\Cont
      * @param        $slug
      * @param  array $section
      * @param null   $position
+     *
      * @return $this
      */
     public function addSection($slug, array $section, $position = null)
     {
-        if ($position === null) {
+        if ($position === null)
+        {
             $position = count($this->sections) + 1;
         }
 
@@ -153,13 +156,15 @@ class ControlPanelBuilder extends \Anomaly\Streams\Platform\Ui\ControlPanel\Cont
      * @param        $slug
      * @param  array $button
      * @param null   $position
+     *
      * @return $this
      */
     public function addSectionButton($section, $slug, array $button, $position = null)
     {
         $buttons = (array)array_get($this->sections, "{$section}.buttons");
 
-        if ($position === null) {
+        if ($position === null)
+        {
             $position = count($buttons) + 1;
         }
 

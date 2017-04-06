@@ -18,6 +18,6 @@ class AccountModule extends Module
      * @var array
      */
     protected $sections = [
-//        'example'
+        //        'example'
     ];
 }

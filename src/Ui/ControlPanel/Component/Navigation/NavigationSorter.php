@@ -39,7 +39,8 @@ class NavigationSorter
      */
     public function sort(ControlPanelBuilder $builder)
     {
-        if (!$navigation = $builder->getNavigation()) {
+        if (!$navigation = $builder->getNavigation())
+        {
             return;
         }
 
@@ -51,7 +52,8 @@ class NavigationSorter
          */
         $navigation = array_combine(
             array_map(
-                function ($item) {
+                function ($item)
+                {
                     return $item['slug'];
                 },
                 $navigation
@@ -63,9 +65,11 @@ class NavigationSorter
          * Again by default push the dashboard
          * module to the top of the navigation.
          */
-        foreach ($navigation as $key => $module) {
+        foreach ($navigation as $key => $module)
+        {
 
-            if ($key == 'rage.module.account') {
+            if ($key == 'rage.module.account')
+            {
 
                 $navigation = [$key => $module] + $navigation;
 
@@ -73,12 +77,17 @@ class NavigationSorter
             }
         }
 
-        uasort($navigation, function($a, $b){
-	        if ($a['sort'] == $b['sort']) {
-		        return true;
-	        }
-	        return ($a['sort'] < $b['sort']) ? -1 : 1;
-        });
+        uasort($navigation,
+            function ($a, $b)
+            {
+                if ($a['sort'] == $b['sort'])
+                {
+                    return true;
+                }
+
+                return ($a['sort'] < $b['sort']) ? -1 : 1;
+            }
+        );
 
         $builder->setNavigation($navigation);
 

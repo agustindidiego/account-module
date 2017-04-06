@@ -51,7 +51,8 @@ class NavigationBuilder
 
         $this->input->read($builder);
 
-        foreach ($builder->getNavigation() as $link) {
+        foreach ($builder->getNavigation() as $link)
+        {
             $controlPanel->addNavigationLink($this->factory->make($link));
         }
     }

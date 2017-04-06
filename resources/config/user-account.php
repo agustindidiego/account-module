@@ -5,7 +5,7 @@ return [
         'breadcrumb' => 'Account',
         'title'      => 'Dashboard',
         'href'       => 'rage.module.account::account.dashboard',
-        'sort'      => -9999,
+        'sort'       => -9999,
     ],
     'sections'   => [
         'dashboard' => [

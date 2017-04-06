@@ -29,39 +29,44 @@ class NavigationHandler
         $navigation = [];
 
         /* @var Module $module */
-        foreach ($modules->enabled()->withConfig('user-account') as $module) {
+        foreach ($modules->enabled()->withConfig('user-account') as $module)
+        {
             $_navigation = config($module->getNamespace('user-account'));
-        	if (isset($_navigation['navigation'])) {
+            if (isset($_navigation['navigation']))
+            {
                 $navigation[$module->getSlug()] = array_merge($_navigation['navigation'], ['module' => $module]);
             }
         }
 
         $builder->setNavigation(
             array_map(
-                function (array $navigation) {
-//                    return [
-//                        'breadcrumb' => $module->getName(),
-//                        'icon'       => $module->getIcon(),
-//                        'title'      => $module->getTitle(),
-//                        'slug'       => $module->getNamespace(),
-//                        'href'       => 'account/' . $module->getSlug(),
-//                    ];
+                function (array $navigation)
+                {
+                    //                    return [
+                    //                        'breadcrumb' => $module->getName(),
+                    //                        'icon'       => $module->getIcon(),
+                    //                        'title'      => $module->getTitle(),
+                    //                        'slug'       => $module->getNamespace(),
+                    //                        'href'       => 'account/' . $module->getSlug(),
+                    //                    ];
 
-	                $module = $navigation['module'];
-	                unset($navigation['module']);
-	                if(isset($navigation['href']))
-	                {
-		                $navigation['href'] = route($navigation['href']);
-	                }
-	                return array_merge(
-		                [
-	                        'breadcrumb' => $module->getName(),
-	                        'icon'       => $module->getIcon(),
-	                        'title'      => $module->getTitle(),
-	                        'slug'       => $module->getNamespace(),
-	                        'href'       => 'account/' . $module->getSlug(),
-	                    ], $navigation
-	                );
+                    $module = $navigation['module'];
+                    unset($navigation['module']);
+                    if (isset($navigation['href']))
+                    {
+                        $navigation['href'] = route($navigation['href']);
+                    }
+
+                    return array_merge(
+                        [
+                            'breadcrumb' => $module->getName(),
+                            'icon'       => $module->getIcon(),
+                            'title'      => $module->getTitle(),
+                            'slug'       => $module->getNamespace(),
+                            'href'       => 'account/' . $module->getSlug(),
+                        ],
+                        $navigation
+                    );
                 },
                 $navigation
             )

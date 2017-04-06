@@ -61,8 +61,10 @@ class SectionBuilder
 
         $this->input->read($builder);
 
-        foreach ($builder->getSections() as $section) {
-            if (!$this->authorizer->authorize($section['permission'])) {
+        foreach ($builder->getSections() as $section)
+        {
+            if (!$this->authorizer->authorize($section['permission']))
+            {
                 continue;
             }
 

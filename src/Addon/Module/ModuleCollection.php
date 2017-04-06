@@ -23,16 +23,20 @@ class ModuleCollection extends \Anomaly\Streams\Platform\Addon\Module\ModuleColl
         $navigation = [];
 
         /* @var Module $item */
-        foreach ($this->items as $item) {
-            if ($item->getNavigation()) {
+        foreach ($this->items as $item)
+        {
+            if ($item->getNavigation())
+            {
                 $navigation[trans($item->getName())] = $item;
             }
         }
 
         ksort($navigation);
 
-        foreach ($navigation as $key => $item) {
-            if ($item->getNamespace() == 'anomaly.module.dashboard') {
+        foreach ($navigation as $key => $item)
+        {
+            if ($item->getNamespace() == 'anomaly.module.dashboard')
+            {
                 $navigation = [$key => $item] + $navigation;
 
                 break;
@@ -40,8 +44,9 @@ class ModuleCollection extends \Anomaly\Streams\Platform\Addon\Module\ModuleColl
         }
 
         return self::make($navigation)
-            ->enabled()
-            ->accessible();
+                   ->enabled()
+                   ->accessible()
+            ;
     }
 
     /**
@@ -57,8 +62,10 @@ class ModuleCollection extends \Anomaly\Streams\Platform\Addon\Module\ModuleColl
         $authorizer = app('Anomaly\Streams\Platform\Support\Authorizer');
 
         /* @var Module $item */
-        foreach ($this->items as $item) {
-            if ($authorizer->authorize($item->getNamespace('*'))) {
+        foreach ($this->items as $item)
+        {
+            if ($authorizer->authorize($item->getNamespace('*')))
+            {
                 $accessible[] = $item;
             }
         }
