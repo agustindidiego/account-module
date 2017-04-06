@@ -1,8 +1,8 @@
 <?php
 
 return [
-	'account-profile' => [
-		'read',
-	    'write'
-	]
+    'account-profile' => [
+        'read',
+        'write',
+    ],
 ];
