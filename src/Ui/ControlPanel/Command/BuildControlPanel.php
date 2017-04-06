@@ -1,8 +1,8 @@
 <?php namespace Rage\AccountModule\Ui\ControlPanel\Command;
 
 use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Button\Command\BuildButtons;
-use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Navigation\Command\BuildNavigation;
-use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Navigation\Command\SetActiveNavigationLink;
+use Rage\AccountModule\Ui\ControlPanel\Component\Navigation\Command\BuildNavigation;
+use Rage\AccountModule\Ui\ControlPanel\Component\Navigation\Command\SetActiveNavigationLink;
 use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Navigation\Command\SetMainNavigationLinks;
 use Rage\AccountModule\Ui\ControlPanel\Component\Section\Command\BuildSections;
 use Anomaly\Streams\Platform\Ui\ControlPanel\Component\Section\Command\SetActiveSection;
