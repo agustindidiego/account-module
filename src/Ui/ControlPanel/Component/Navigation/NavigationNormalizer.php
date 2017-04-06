@@ -74,7 +74,10 @@ class NavigationNormalizer
                 $link['attributes']['href'] = url($link['attributes']['href']);
             }
 
-            $link['order'] = array_get($link, 'order', 0);
+            /*
+             * Make sure we have a sort attribute.
+             */
+            $link['sort'] = array_get($link, 'sort', 0);
         }
 
         $builder->setNavigation($links);
