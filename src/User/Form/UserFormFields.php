@@ -24,7 +24,7 @@ class UserFormFields
                 'rules'    => [
                     'required_if:password,*',
                 ],
-            ],
+            ]
         ];
 
         $assignments = $users->getAssignments();

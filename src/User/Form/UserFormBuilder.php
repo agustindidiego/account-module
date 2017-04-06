@@ -5,80 +5,71 @@ use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Anomaly\UsersModule\User\UserModel;
 use Illuminate\Http\Request;
 
-class UserFormBuilder extends \Anomaly\UsersModule\User\Form\UserFormBuilder
+
+class UserFormBuilder extends FormBuilder
 {
 
-    protected $model = UserModel::class;
+	protected $model = UserModel::class;
+
+	protected $actions = [
+		'save'
+	];
+
+	protected $buttons = [
+		'back' => [
+			'text' => 'Back',
+		    'type'  => 'link',
+		    'attributes' => [
+			    'href'   => 'account/profile'
+		    ]
+		]
+	];
+
+	protected $options = [
+		'form_view' => 'streams::form/form'
+	];
+
+	public function onReady()
+	{
+
+	}
 
     /**
-     * Form actions
+     * Fired just before posting.
      *
-     * @var array
+     * @param Request $request
      */
-    protected $actions = [
-        'save',
-    ];
-
-    /**
-     * Form buttons
-     *
-     * @var array
-     */
-    protected $buttons = [
-        'back' => [
-            'text'       => 'Back',
-            'type'       => 'link',
-            'attributes' => [
-                'href' => 'account/profile',
-            ],
-        ],
-    ];
-
-    /**
-     * Form options
-     *
-     * @var array
-     */
-    protected $options = [
-        'form_view' => 'streams::form/form',
-    ];
-
-    /**
-     * On saving user form
-     *
-     * @param Request $request The request
-     */
-    public function onSaving(Request $request)
+    public function onPosting(Request $request)
     {
-        if ($request->get('confirm_password') && $this->form->getMode() == 'edit')
-        {
-            $this->disableFormField('confirm_password');
+        if (!$request->get('password') && $this->form->getMode() == 'edit') {
+            $this->disableFormField('password');
         }
     }
 
-    /**
-     * When form was built
-     *
-     * @param UserFormBuilder $builder The builder
-     * @param FieldFactory    $factory The factory
-     */
+	public function onSaving(Request $request)
+	{
+		if ($request->get('confirm_password') && $this->form->getMode() == 'edit') {
+			$this->disableFormField('confirm_password');
+		}
+	}
+
     public function onBuilt(UserFormBuilder $builder, FieldFactory $factory)
     {
-        $builder->addFormField($factory->make(
-            [
-                'field'    => 'confirm_password',
-                'type'     => 'anomaly.field_type.text',
-                'label'    => 'Confirm Password',
-                'required' => false,
-                'rules'    => [
-                    'required_with:password',
-                    'same:password',
-                ],
-                'config'   => [
-                    'type' => 'password',
-                ],
-                'value'    => '',
-            ]
-        ));
+	    $builder->addFormField($factory->make(
+		    [
+			    'field'    => 'confirm_password',
+			    'type'     => 'anomaly.field_type.text',
+			    'label'    => 'Confirm Password',
+			    'required' => false,
+			    'rules'     => [
+				    'required_with:password',
+			        'same:password'
+			    ],
+			    'config'    => [
+				    'type'              => 'password'
+			    ],
+			    'value' => ''
+		    ]
+	    ));
     }
 }
