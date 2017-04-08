@@ -1,8 +1,8 @@
 {% import "rage.module.account::macros/menu.twig" as menu %}
 
-<aside id="menu" class="scrollbar">
+<aside id="menu" class="scrollbar" style="margin-bottom: 10px;">
 
-    <ul>
+    <ul class="nav nav-tabs">
         {% for section in template.accountcp.sections.root().visible() %}
             {{ menu.section(template.accountcp.sections, section) }}
         {% endfor %}

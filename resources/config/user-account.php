@@ -2,9 +2,9 @@
 
 return [
     'navigation' => [
-        'breadcrumb' => 'Account',
-        'title'      => 'Dashboard',
-        'href'       => 'rage.module.account::account.dashboard',
+        'breadcrumb' => 'My Account',
+        'title'      => 'My Account',
+        'href'       => 'rage.module.account::account.index',
         'sort'       => -9999,
     ],
     'sections'   => [

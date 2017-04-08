@@ -1,38 +1,48 @@
-{% extends layout('default') %}
+<!DOCTYPE html>
+<html lang="{{ config('app.locale') }}">
 
-{% block before_container %}
-    {% include "theme::partials/page-main-title" with {page_title: block('page_title'), show_breadcrumbs: 1 } %}
-{% endblock %}
+<head>
+    {% block metadata %}
+        {% include "theme::partials/metadata" %}
+    {% endblock %}
+</head>
 
-{% block container %}
-    <div id="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    {% block sidebar %}
-                        {% include "rage.module.account::partials/sidebar" %}
-                    {% endblock %}
-                </div>
-                <div class="col-md-9">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                {% block menu %}
-                                    {% include "rage.module.account::partials/menu" %}
-                                {% endblock %}
-                                {% block buttons %}
-                                    {% include "rage.module.account::partials/buttons" %}
-                                {% endblock %}
-                            </div>
-                            <div class="col-12">
-                                {% include "theme::partials/messages" %}
+<body>
 
-                                {% block content %}{% endblock %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+{% include "theme::partials/navigation" %}
+
+<div id="content">
+    <div class="container">
+        {% include "theme::partials/breadcrumbs" %}
+        {% include "theme::partials/messages" %}
+
+        <div class="row">
+            <div class="col-md-3">
+                {% block sidebar %}
+                    {% include "rage.module.account::partials/sidebar" %}
+                {% endblock %}
+            </div>
+            <div class="col-md-9">
+                {% block menu %}
+                    {% include "rage.module.account::partials/menu" %}
+                {% endblock %}
+                {% block buttons %}
+                    {% include "rage.module.account::partials/buttons" %}
+                {% endblock %}
+
+                {% block content %}{% endblock %}
             </div>
         </div>
+
+        {% if (request_path() == '/') %}
+            <hr> {% include "theme::partials/posts" %}
+        {% endif %}
     </div>
-{% endblock %}
+</div>
+
+{% include "theme::partials/footer" %}
+{% include "theme::partials/scripts" %}
+
+</body>
+
+</html>

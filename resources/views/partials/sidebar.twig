@@ -1,6 +1,6 @@
 <aside id="sidebar" class="scrollbar">
 
-    <ul>
+    <ul class="nav nav-pills nav-stacked">
         {% for key, navigation in template.accountcp.navigation %}
             <li class="{{ navigation.active ? 'active' }} variant-border" data-slug="{{ navigation.slug }}">
                 <a {{ html_attributes(navigation.attributes) }} title="{{ trans(navigation.title) }}">
