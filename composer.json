@@ -1,7 +1,7 @@
 {
     "name": "rage/account-module",
     "type": "streams-addon",
-    "description": "",
+    "description": "Public facing account module for users to edit thier own account information",
     "keywords": [
         "account module",
         "user account",
